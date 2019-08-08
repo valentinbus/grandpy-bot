@@ -1,3 +1,4 @@
-./requirements.txt
-./.vscode
-./venv/
+requirements.txt
+.vscode
+venv
+__pycache__
