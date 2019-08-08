@@ -1,3 +1,27 @@
+var request = new XMLHttpRequest()
+
+function get_wiki_info(query){
+	var request = new XMLHttpRequest()
+	// Open a new connection, using the GET request on the URL endpoint
+	var BASE_URL = 'http://localhost:80/wiki_response'
+
+	if (query!=null){
+		var params = "?"+query.replace(' ', '&')
+	} else {
+		var params = null
+	}
+	
+	url = BASE_URL+params
+	request.open('GET', url, true)
+
+	request.onload = function () {
+		var data = JSON.parse(this.response)
+		console.log(data)
+		}
+	request.send()
+}
+
+
 var Message;
 $messages = $('.messages');
 Message = function (arg) {
@@ -16,6 +40,7 @@ Message = function (arg) {
 		}(this);
 		return this;
 };
+
 function addBr(text){
 		//console.log("text was: "+text)
 		newText=text.replace(/\n/g, "<br />")
