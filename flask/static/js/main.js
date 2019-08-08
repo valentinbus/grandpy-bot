@@ -1,27 +1,3 @@
-var request = new XMLHttpRequest()
-
-function get_wiki_info(query){
-	var request = new XMLHttpRequest()
-	// Open a new connection, using the GET request on the URL endpoint
-	var BASE_URL = 'http://localhost:80/wiki_response'
-
-	if (query!=null){
-		var params = "?"+query.replace(' ', '&')
-	} else {
-		var params = null
-	}
-	
-	url = BASE_URL+params
-	request.open('GET', url, true)
-
-	request.onload = function () {
-		var data = JSON.parse(this.response)
-		console.log(data)
-		}
-	request.send()
-}
-
-
 var Message;
 $messages = $('.messages');
 Message = function (arg) {
@@ -61,26 +37,75 @@ function getCurrentTimestamp()
 	return d;
 }
 
+function get_wiki_info(query){
+	var request = new XMLHttpRequest()
+	// Open a new connection, using the GET request on the URL endpoint
+	var BASE_URL = 'http://localhost:80/wiki_response'
+
+	if (query!=null){
+		var params = "?"+query.replace(' ', '&')
+	} else {
+		var params = null
+	}
+	
+	url = BASE_URL+params
+	request.open('GET', url, true)
+
+	request.onload = function () {
+		var data = request.responseText
+		console.log(data)
+		}
+	
+	request.send()
+
+	return data
+
+}
+
 function showUserMessage(msg,d){
-				var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
-				//console.log("in showUserMessage");
-				message = new Message({
-						text: msg,
-						time: d.toLocaleString("en-IN", options),
-						message_side: 'right'
-				});
-				message.draw();
-				$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-				$('#msg_input').val('');
+	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
+	//console.log("in showUserMessage");
+	message = new Message({
+			text: msg,
+			time: d.toLocaleString("en-IN", options),
+			message_side: 'right'
+	});
+	message.draw();
+	$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+	$('#msg_input').val('');
+	
+
+
+	var request = new XMLHttpRequest()
+	// Open a new connection, using the GET request on the URL endpoint
+	var BASE_URL = 'http://localhost:80/wiki_response'
+
+	if (msg!=null){
+		var params = "?"+msg.replace(' ', '&')
+	} else {
+		var params = null
+	}
+	
+	url = BASE_URL+params
+	request.open('GET', url, true)
+
+	request.onload = function () {
+		var data = JSON.parse(this.responseText)
+		showBotMessage(data[2][0], d)
+		}
+	
+	request.send()
+
 }
 function showBotMessage(msg,d){
-				var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
-				//console.log("in showBotMessage");
-				message = new Message({
-						 text: msg,
-						 time: d.toLocaleString("en-IN", options),
-						 message_side: 'left'
-				});
-				message.draw();
-				$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
+	//console.log("in showBotMessage");
+	message = new Message({
+				text: msg,
+				time: d.toLocaleString("en-IN", options),
+				message_side: 'left'
+	});
+	message.draw();
+	$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
 }
+
