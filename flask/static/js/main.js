@@ -58,11 +58,18 @@ function get_wiki_info(query){
 	
 	request.send()
 
-	return data
 
 }
 
-function showUserMessage(msg,d){
+function url_google(q){
+	base_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDCw811CjAaII4gir05qQkaJIsNBfpW4v8&q="
+	q.replace("?", '&')
+	url = base_url+q
+	document.getElementById("googleMap").src = url
+}
+
+
+function main(msg,d){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
 	//console.log("in showUserMessage");
 	message = new Message({
@@ -73,7 +80,6 @@ function showUserMessage(msg,d){
 	message.draw();
 	$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
 	$('#msg_input').val('');
-	
 
 
 	var request = new XMLHttpRequest()
@@ -85,6 +91,7 @@ function showUserMessage(msg,d){
 	} else {
 		var params = null
 	}
+	url_google(params)
 	
 	url = BASE_URL+params
 	request.open('GET', url, true)
