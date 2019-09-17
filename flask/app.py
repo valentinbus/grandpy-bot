@@ -16,7 +16,7 @@ def index():
 def response():
 
     query = " ".join([arg for arg in request.args])
-
+    
     if query != "":
         return jsonify(wikipedia.get_all_wiki_info(query))
     else:

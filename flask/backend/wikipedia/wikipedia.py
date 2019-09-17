@@ -19,6 +19,6 @@ def get_all_wiki_info(search):
     r = SESSION.get(url=BASE_URL, params=params)
     data = r.json()
     return data
-    
-from pprint import pprint
-pprint(get_all_wiki_info(""))
+ 
+def test(param):
+    return param

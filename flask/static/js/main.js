@@ -57,8 +57,6 @@ function get_wiki_info(query){
 		}
 	
 	request.send()
-
-
 }
 
 function url_google(q){
@@ -67,7 +65,6 @@ function url_google(q){
 	url = base_url+q
 	document.getElementById("googleMap").src = url
 }
-
 
 function main(msg,d){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
@@ -91,14 +88,17 @@ function main(msg,d){
 	} else {
 		var params = null
 	}
-	url_google(params)
 	
 	url = BASE_URL+params
 	request.open('GET', url, true)
 
 	request.onload = function () {
 		var data = JSON.parse(this.responseText)
-		showBotMessage(data[2][0], d)
+		showBotMessage("Une petite seconde, je réfléchis...", d)
+		setTimeout(function(){
+			showBotMessage(data[2][0], d)
+			url_google(params)
+		}, 2000)
 		}
 	
 	request.send()
