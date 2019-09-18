@@ -24,6 +24,28 @@ def __parser(q):
     
     return None
 
+def __get_geoloc(q):
+    """
+    Get geoloc search based on wikipedia function
+    """
+
+    PARAMS = {
+        "action": "query",
+        "format": "json",
+        "titles": q,
+        "prop": "coordinates"
+    }
+
+    data = (SESSION.get(url=BASE_URL, params=PARAMS)).json()
+    pages = data['query']['pages']
+
+    d = dict()
+    for k, v in pages.items():
+        d["Latitute"] = str(v['coordinates'][0]['lat'])
+        d["Longitude"] = str(v['coordinates'][0]['lon'])
+
+    return d
+    
 
 def get_all_wiki_info(search):
     """
