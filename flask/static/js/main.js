@@ -66,7 +66,8 @@ function url_google(q){
 	document.getElementById("googleMap").src = url
 }
 
-function main(msg,d){
+
+function main(msg,d, data){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
 	//console.log("in showUserMessage");
 	message = new Message({
@@ -79,29 +80,32 @@ function main(msg,d){
 	$('#msg_input').val('');
 
 
-	var request = new XMLHttpRequest()
-	// Open a new connection, using the GET request on the URL endpoint
-	var BASE_URL = 'http://localhost:80/wiki_response'
+	// var request = new XMLHttpRequest()
+	// // Open a new connection, using the GET request on the URL endpoint
+	// var BASE_URL = 'http://localhost:80/wiki_response'
 
-	if (msg!=null){
-		var params = "?"+msg.replace(' ', '&')
-	} else {
-		var params = null
-	}
+	// if (msg!=null){
+	// 	var params = "?"+msg.replace(' ', '&')
+	// } else {
+	// 	var params = null
+	// }
 	
-	url = BASE_URL+params
-	request.open('GET', url, true)
+	// url = BASE_URL+params
+	// request.open('GET', url, true)
 
-	request.onload = function () {
-		var data = JSON.parse(this.responseText)
-		showBotMessage("Une petite seconde, je réfléchis...", d)
-		setTimeout(function(){
-			showBotMessage(data[2][0], d)
-			url_google(params)
-		}, 2000)
-		}
+	console.log(data)
+	console.log(typeof(data))
+
+	// request.onload = function () {
+	// 	// var data = JSON.parse(this.responseText)
+	// 	showBotMessage("Une petite seconde, je réfléchis...", d)
+	// 	setTimeout(function(){
+	// 		showBotMessage(data[2][0], d)
+	// 		url_google(params)
+	// 	}, 2000)
+	// 	}
 	
-	request.send()
+	// request.send()
 
 }
 function showBotMessage(msg,d){
