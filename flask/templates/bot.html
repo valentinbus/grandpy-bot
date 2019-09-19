@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -29,13 +30,10 @@
                 <ul class="messages"></ul>
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
-                            <input id="msg_input" class="message_input" placeholder="Say Hi to begin chat..." />
+                        <form id="input_message" method="POST" action="">
+                            <input id="msg_input" name="query"  class="message_input" placeholder="Dites Bonjour à GrandpyBot..." />
+                        </form>
                     </div>
-                    <div class="send_message">
-                        <div class="icon" onclick='main(document.getElementById("msg_input").value, getCurrentTimestamp())'>
-                            <div class="text" style="color:black">Send</div>
-                        </div>
-                    </div> 
                 </div>
             </div>
             <div class="message_template">
