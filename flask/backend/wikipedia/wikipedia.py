@@ -62,8 +62,6 @@ class Wikipedia:
             }
 
         r = SESSION.get(url=BASE_URL, params=params)
-
-        print(f"encoding ===>{r.encoding}")
         data = r.json() 
 
         return data

@@ -56,9 +56,6 @@ function main(msg,d, data){
 	$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
 	$('#msg_input').val('');
 
-	console.log("data===>"+data)
-	console.log(typeof(data))
-
 
 	showBotMessage("Une petite seconde, je réfléchis...", d)
 	setTimeout(function(){
