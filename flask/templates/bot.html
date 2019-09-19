@@ -34,17 +34,6 @@
                             <input id="msg_input" name="query"  class="message_input" placeholder="Dites Bonjour à GrandpyBot..." />
                         </form>
                     </div>
-                    <div class="send_message">
-                        <div id="test" class="icon">
-                            <div class="text" style="color:black">Send</div>
-                        </div>
-                         <script>
-                        $('#test').click(function () {
-                            main(document.getElementById("msg_input").value, getCurrentTimestamp(),'{{ data }}');
-                            return false;
-                        });
-                        </script>
-                    </div> 
                 </div>
             </div>
             <div class="message_template">

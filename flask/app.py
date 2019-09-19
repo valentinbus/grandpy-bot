@@ -12,24 +12,18 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 def index():
-    data=None
+    return render_template("bot.html")
+
+
+@app.route('/process', methods=["POST"])
+def response():
     if request.method == "POST":
         query = request.form['query']
         data = wk.get_all_wiki_info(query)
-        
-        pprint(f"DATA====>{data}")
-        print(f"QUERY====>{query}")
-    return render_template('bot.html', data=data)
-
-
-@app.route('/test', methods=["GET", "POST"])
-def response():
-    if request.method=='POST':
-        data = request.form['test']
-        print(data)
-    return render_template("test.html")
+        return jsonify(data)
+    return jsonify({"error":"no response"})
 
 
 if __name__ == '__main__':
