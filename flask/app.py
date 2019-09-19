@@ -14,24 +14,22 @@ CORS(app)
 
 @app.route('/', methods=["GET", "POST"])
 def index():
+    data=None
     if request.method == "POST":
         query = request.form['query']
-        data = wk.get_all_wiki_info("ou est openclassrooms")
+        data = wk.get_all_wiki_info(query)
         
         pprint(f"DATA====>{data}")
         print(f"QUERY====>{query}")
     return render_template('bot.html', data=data)
 
 
-@app.route('/wiki_response', methods=["GET", "POST"])
+@app.route('/test', methods=["GET", "POST"])
 def response():
-
-    query = " ".join([arg for arg in request.args])
-    
-    if query != "":
-        return jsonify(wikipedia.get_all_wiki_info(query))
-    else:
-        return jsonify(wikipedia.get_all_wiki_info(query).get("error").get("info"))
+    if request.method=='POST':
+        data = request.form['test']
+        print(data)
+    return render_template("test.html")
 
 
 if __name__ == '__main__':

@@ -31,15 +31,20 @@
                 <div class="bottom_wrapper clearfix">
                     <div class="message_input_wrapper">
                         <form id="input_message" method="POST" action="">
-                            <input name="query" id="msg_input" class="message_input" placeholder="Say Hi to begin chat..." />
-                        <script>
-                        $('#input_message').submit(function () {
+                            <input id="msg_input" name="query"  class="message_input" placeholder="Dites Bonjour à GrandpyBot..." />
+                        </form>
+                    </div>
+                    <div class="send_message">
+                        <div id="test" class="icon">
+                            <div class="text" style="color:black">Send</div>
+                        </div>
+                         <script>
+                        $('#test').click(function () {
                             main(document.getElementById("msg_input").value, getCurrentTimestamp(),'{{ data }}');
                             return false;
                         });
                         </script>
-                        </form>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <div class="message_template">
