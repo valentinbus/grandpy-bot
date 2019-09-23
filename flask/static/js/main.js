@@ -37,10 +37,7 @@ function getCurrentTimestamp()
 	return d;
 }
 
-function url_google(q){
-	base_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDCw811CjAaII4gir05qQkaJIsNBfpW4v8&q="
-	q.replace("?", '&')
-	url = base_url+q
+function url_google(url){
 	document.getElementById("googleMap").src = url
 }
 
@@ -59,7 +56,9 @@ function main(msg,d, data){
 
 	showBotMessage("Une petite seconde, je réfléchis...", d)
 	setTimeout(function(){
-		showBotMessage(data[2][0], d)
+		showBotMessage(data['wikipedia'][2][0], d)
+		url_google(data["geolocalistion"]["Latitute"], data["geolocalistion"]["Longitude"])
+		console.log(data["geolocalistion"]["Latitute"])
 	}, 2000)
 
 }
