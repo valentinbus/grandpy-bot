@@ -1,4 +1,5 @@
 import googlemaps
+import re
 
 class Parser:
     def parser(self, q):

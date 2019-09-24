@@ -17,7 +17,13 @@ class Gmaps:
         }
         coordinates = dict()
         response = (SESSION.get(url=BASE_URL, params=PARAMS)).json()
-
+        
         for elem in response["results"]:
             return elem["geometry"]["location"]
-        return "GrandPy a peut être mal entendu mais rien ne me rappel ce que tu viens de dire..."
+        return response
+
+    def url_embed(self, q):
+        return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q={q}"
+
+    def default_url(self):
+        return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q=cassis"

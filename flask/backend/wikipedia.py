@@ -11,7 +11,7 @@ class Wikipedia:
 
     def _get_wiki_title(self, coordinates):
         formated_coord = f"{coordinates['lat']}|{coordinates['lng']}"
-
+        
         PARAMS = {
             "action" : "query",
             "list" : "geosearch",
@@ -36,4 +36,4 @@ class Wikipedia:
         response = SESSION.get(url=BASE_URL, params=PARAMS).json()
         nb_page = [elem for elem in response["query"]["pages"]]
 
-        return response["query"]["pages"][nb_page[0]]["extract"]
+        return f'Oh oui je vois ...\nCela me rappel que {response["query"]["pages"][nb_page[0]]["extract"]}'
