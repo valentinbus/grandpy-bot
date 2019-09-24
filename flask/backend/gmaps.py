@@ -18,9 +18,11 @@ class Gmaps:
         coordinates = dict()
         response = (SESSION.get(url=BASE_URL, params=PARAMS)).json()
         
-        for elem in response["results"]:
-            return elem["geometry"]["location"]
-        return response
+        if response["status"] == "ZERO_RESULTS":
+            return None
+        else:
+            for elem in response["results"]:
+                return elem["geometry"]["location"]
 
     def url_embed(self, coordinates):
         return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q=null&center={coordinates['lat']},{coordinates['lng']}"

@@ -1,4 +1,3 @@
-import googlemaps
 import re
 
 class Parser:
