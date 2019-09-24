@@ -10,9 +10,14 @@ class Parser:
         q = q.lower()
         p = re.compile(
             "ou est \s*([^.?:;]*)$|"
+            "où est \s*([^.?:;]*)$|"
             "ou se trouve\s*([^.?:;]*)$|"
-            "l’adresse de\s*([^.?:;]*)$"
-            "ou se situe\s*([^.?:;]*)$"
+            "où se trouve\s*([^.?:;]*)$|"
+            "l’adresse de\s*([^.?:;]*)$|"
+            "ladresse de\s*([^.?:;]*)$|"
+            "l adresse de\s*([^.?:;]*)$|"
+            "ou se situe\s*([^.?:;]*)$|"
+            "où se situe\s*([^.?:;]*)$"
             )
         match = p.match(q)
 

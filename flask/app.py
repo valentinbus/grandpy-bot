@@ -27,8 +27,8 @@ def response():
     if request.method == "POST":
         query = request.form['query']
         q = parser.parser(query)
-        google_url = gmaps.url_embed(q)
         coordinates = gmaps.find_coordinates(q)
+        google_url = gmaps.url_embed(coordinates)
         data = wk.get_anecdote(coordinates)
 
         response = {

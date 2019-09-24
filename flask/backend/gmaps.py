@@ -22,8 +22,8 @@ class Gmaps:
             return elem["geometry"]["location"]
         return response
 
-    def url_embed(self, q):
-        return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q={q}"
+    def url_embed(self, coordinates):
+        return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q=null&center={coordinates['lat']},{coordinates['lng']}"
 
     def default_url(self):
         return f"https://www.google.com/maps/embed/v1/place?key={GMAPS_API_KEY}&q=cassis"
