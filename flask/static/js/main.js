@@ -37,10 +37,7 @@ function getCurrentTimestamp()
 	return d;
 }
 
-function url_google(q){
-	base_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDCw811CjAaII4gir05qQkaJIsNBfpW4v8&q="
-	q.replace("?", '&')
-	url = base_url+q
+function url_google(url){
 	document.getElementById("googleMap").src = url
 }
 
@@ -59,10 +56,12 @@ function main(msg,d, data){
 
 	showBotMessage("Une petite seconde, je réfléchis...", d)
 	setTimeout(function(){
-		showBotMessage(data[2][0], d)
+		showBotMessage(data['data'], d)
+		url_google(data['google_url'], d)
 	}, 2000)
 
 }
+
 function showBotMessage(msg,d){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
 	//console.log("in showBotMessage");

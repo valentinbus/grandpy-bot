@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, jsonify, Response, make_response
-from backend.wikipedia.wikipedia import Wikipedia
+from backend.wikipedia import Wikipedia
+from backend.gmaps import Gmaps
+from backend.parser import Parser
 from flask_cors import CORS, cross_origin
 
 import json 
@@ -7,6 +9,8 @@ import json
 from pprint import pprint
 
 wk = Wikipedia()
+gmaps = Gmaps()
+parser = Parser()
 
 app = Flask(__name__)
 CORS(app)
@@ -14,15 +18,26 @@ CORS(app)
 
 @app.route('/', methods=["GET"])
 def index():
-    return render_template("bot.html")
+    googleurl = gmaps.default_url()
+    return render_template("bot.html", googleurl=googleurl)
 
 
 @app.route('/process', methods=["POST"])
 def response():
     if request.method == "POST":
         query = request.form['query']
-        data = wk.get_all_wiki_info(query)
-        return jsonify(data)
+        q = parser.parser(query)
+        google_url = gmaps.url_embed(q)
+        coordinates = gmaps.find_coordinates(q)
+        data = wk.get_anecdote(coordinates)
+
+        response = {
+            "google_url":google_url,
+            "coordinates":coordinates,
+            "data":data
+        }
+
+        return jsonify(response)
     return jsonify({"error":"no response"})
 
 
