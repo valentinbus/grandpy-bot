@@ -56,12 +56,12 @@ function main(msg,d, data){
 
 	showBotMessage("Une petite seconde, je réfléchis...", d)
 	setTimeout(function(){
-		showBotMessage(data['wikipedia'][2][0], d)
-		url_google(data["geolocalistion"]["Latitute"], data["geolocalistion"]["Longitude"])
-		console.log(data["geolocalistion"]["Latitute"])
+		showBotMessage(data['data'], d)
+		url_google(data['google_url'], d)
 	}, 2000)
 
 }
+
 function showBotMessage(msg,d){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
 	//console.log("in showBotMessage");
