@@ -25,11 +25,17 @@ def index():
 @app.route('/process', methods=["POST"])
 def response():
     if request.method == "POST":
+
         query = request.form['query']
         q = parser.parser(query)
-        coordinates = gmaps.find_coordinates(q)
-        google_url = gmaps.url_embed(coordinates)
-        data = wk.get_anecdote(coordinates)
+        coordinates = gmaps.find_coordinates(query)
+
+        if coordinates:
+            google_url = gmaps.url_embed(coordinates)
+            data = wk.get_anecdote(coordinates)
+        else:
+            google_url = gmaps.default_url()
+            data = "Désolé GrandPy a du mal à entendre ... Peux-tu reformulez ta question ? Peut être que ça me rappelera quelque chose..."
 
         response = {
             "google_url":google_url,
