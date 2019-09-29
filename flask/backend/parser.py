@@ -1,6 +1,10 @@
 import re
 
+
 class Parser:
+    """
+    Use to parse user's input
+    """
     def parser(self, q):
         """
         Parse user element to being usable on wikipedia
@@ -23,5 +27,5 @@ class Parser:
         if match:
             result = [group for group in match.groups() if group is not None]
             return result
-        
+
         return None

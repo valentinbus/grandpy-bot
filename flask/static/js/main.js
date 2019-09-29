@@ -54,7 +54,7 @@ function main(msg,d, data){
 	$('#msg_input').val('');
 
 
-	showBotMessage("Une petite seconde, je réfléchis...", d)
+	showBotMessage("Une petite seconde, le temps que le son arrive à mon cerveau...", d)
 	setTimeout(function(){
 		showBotMessage(data['data'], d)
 		url_google(data['google_url'], d)

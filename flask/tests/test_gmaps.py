@@ -1,7 +1,9 @@
 import pytest
 import requests
 import os
-from flask.backend.gmaps import Gmaps, GMAPS_API_KEY1, GMAPS_API_KEY2, BASE_URL
+from flask.backend.gmaps import (
+    Gmaps, GMAPS_API_KEY1, GMAPS_API_KEY2, BASE_URL
+)
 
 gmaps = Gmaps()
 
