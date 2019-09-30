@@ -24,22 +24,22 @@ function addBr(text){
 		//console.log("text is: "+text)
 		return newText;
 
-}
+};
 
 function changeTitle(title){
 		document.getElementById("title").innerHTML=title;
-}
+};
 
 function getCurrentTimestamp()
 {
 	// var d=new Date(c["timestamp"][0],c["timestamp"][1],c["timestamp"][2],c["timestamp"][3],c["timestamp"][4],c["timestamp"][5],c["timestamp"][6]);
 	var d = new Date();
 	return d;
-}
+};
 
 function url_google(url){
 	document.getElementById("googleMap").src = url
-}
+};
 
 
 function main(msg,d, data){
@@ -60,7 +60,7 @@ function main(msg,d, data){
 		url_google(data['google_url'], d)
 	}, 2000)
 
-}
+};
 
 function showBotMessage(msg,d){
 	var options = {month: 'short', day: 'numeric', hour:'numeric', minute: 'numeric'  };
@@ -72,7 +72,7 @@ function showBotMessage(msg,d){
 	});
 	message.draw();
 	$messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-}
+};
 
 
 $('#input_message').on("submit", function (event) {

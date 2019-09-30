@@ -72,6 +72,7 @@ def response():
 if __name__ == '__main__':
     app.run(
         debug=True,
-        host='0.0.0.0',
-        port=80,
+        #If you want to test on local uncomment the two next lines
+        # host='0.0.0.0',
+        # port=80,
     )
