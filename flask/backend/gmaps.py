@@ -6,8 +6,6 @@ BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json"
 GMAPS_API_KEY1 = os.getenv("GMAPS_API_KEY1")
 GMAPS_API_KEY2 = os.getenv("GMAPS_API_KEY2")
 
-SESSION = requests.session()
-
 
 class Gmaps:
     """
@@ -24,7 +22,7 @@ class Gmaps:
             "address": q
         }
         coordinates = dict()
-        response = (SESSION.get(url=BASE_URL, params=PARAMS)).json()
+        response = (requests.get(url=BASE_URL, params=PARAMS)).json()
 
         if response["status"] == "ZERO_RESULTS":
             return None

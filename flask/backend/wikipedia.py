@@ -4,7 +4,6 @@ import json
 
 
 BASE_URL = "https://fr.wikipedia.org/w/api.php"
-SESSION = requests.session()
 
 
 class Wikipedia:
@@ -28,7 +27,7 @@ class Wikipedia:
             "gscoord": formated_coord
         }
 
-        return SESSION.get(
+        return requests.get(
             url=BASE_URL, params=PARAMS
         ).json()['query']['geosearch'][0]['title']
 
@@ -47,7 +46,7 @@ class Wikipedia:
             "explaintext": True
         }
 
-        response = SESSION.get(url=BASE_URL, params=PARAMS).json()
+        response = requests.get(url=BASE_URL, params=PARAMS).json()
         nb_page = [elem for elem in response["query"]["pages"]]
 
         return (
