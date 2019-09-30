@@ -26,26 +26,27 @@ def test_get_wiki_title(monkeypatch):
     monkeypatch.setattr("requests.get", MockRequestsGet)
     assert wk._get_wiki_title(coordinates) == "Le test est ok"
 
-# def test_get_anecdote(monkeypatch):
-#     def mock_get_wiki_title(coordinates):
-#         return "Le test est ok :)"
+def test_get_anecdote(monkeypatch):
+    def mock_get_wiki_title(coordinates):
+        return "Le test est ok :)"
 
-#     class MockRequestsGet:
-#         def __init__(self, url, params):
-#             pass
+    class MockRequestsGet:
+        def __init__(self, url, params):
+            pass
 
-#         def json(self):
-#             return {
-#                 "query": {
-#                     "pages": {
-#                         "115750": {
-#                             "extract": "Le test est ok :)"
-#                         }
-#                     } 
-#                 }
-#             }
+        def json(self):
+            return {
+                "query": {
+                    "pages": {
+                        "115750": {
+                            "extract": "Le test est ok :)"
+                        }
+                    } 
+                }
+            }
 
-#     monkeypatch.setattr("requests.get", MockRequestsGet)
-#     monkeypatch.setattr("Wikipedia._get_wiki_title", mock_get_wiki_title)
+    monkeypatch.setattr("requests.get", MockRequestsGet)
+    monkeypatch.setattr("Wikipedia._get_wiki_title", mock_get_wiki_title)
 
-#     assert wk.get_anecdote({"lat":48.85, "lng":2.29}) == "Le test est ok :)"
+    assert wk.get_anecdote({"lat":48.85, "lng":2.29}) == "Le test est ok :)"
+
