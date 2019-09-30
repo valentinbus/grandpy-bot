@@ -3,11 +3,11 @@
 This project is a chatbot. You can ask him some questions concerning differents locations as : 
 - "Où est Paris ?"
 - "Où se situe la tour Eiffel ?"
-- "Quelle est l''adresse de Rome ?"
+- "Quelle est l'adresse de Rome ?"
 
-GrandPyBot will find location and indicates on you on maps, then he will find an anecdote concerning location. 
+GrandPyBot will find location and indicates you on map, then he will find an anecdote concerning location. 
 
-For this project Geocode (gmaps API function), Geosearch(wikipedia API function) are used.
+For this project Geocode (gmaps API function), Geosearch (wikipedia API function) are used.
 
 ![Alt text](./flask/static/img/example.png)
 This project is also available on : https://grandpy-bot-vb.herokuapp.com/
