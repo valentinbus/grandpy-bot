@@ -7,6 +7,7 @@ from flask.backend.gmaps import (
 
 gmaps = Gmaps()
 
+
 def test_find_coordinates(monkeypatch):
     class MockRequestsGet:
         def __init__(self, url, params):
@@ -27,11 +28,11 @@ def test_find_coordinates(monkeypatch):
                 "status": "OK"
             }
 
-
     monkeypatch.setattr("requests.get", MockRequestsGet)
-    assert gmaps.find_coordinates("ou est paris") == {"lat":48.85, "lng":2.29}
+    assert (
+        gmaps.find_coordinates("ou est paris") == {"lat": 48.85, "lng": 2.29}
+    )
 
-def test_find_coordinates(monkeypatch):
     class MockRequestsGet:
         def __init__(self, url, params):
             pass
@@ -51,12 +52,18 @@ def test_find_coordinates(monkeypatch):
                 "status": "ZERO_RESULTS"
             }
     monkeypatch.setattr("requests.get", MockRequestsGet)
-    assert gmaps.find_coordinates("idnzifnef") == None
+    assert  gmaps.find_coordinates("idnzifnef") is None
 
 
-def test_url_embed(monkeypatch):
-    assert gmaps.url_embed({"lat":48.85, "lng":2.29}) == (
+def test_url_embed():
+    assert gmaps.url_embed({"lat": 48.85, "lng": 2.29}) == (
             f"https://www.google.com/maps/embed/v1/place"
             f"?key={GMAPS_API_KEY2}&q=null&center=48.85,"
             f"2.29"
+        )
+
+def test_default_url():
+    assert gmaps.default_url() == (
+            "https://www.google.com/maps/embed/v1/place?"
+            f"key={GMAPS_API_KEY2}&q=cassis"
         )
